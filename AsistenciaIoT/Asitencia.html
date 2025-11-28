@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/Asistencia.css">
+    <title>Asistencia</title>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a class="nav-item">Inicio</a>
+        <a class="nav-item">Horario</a>
+        <a class="nav-item active">Asistencia</a>
+        <a class="nav-item">Perfil</a>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="contenido">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>Grupos</h2>
+
+            <!-- Grupo del estudiante -->
+            <div class="grupo-item active" onclick="mostrarMaterias()">
+                1GS132
+            </div>
+        </div>
+
+        <!-- PANEL DE INFORMACIÓN -->
+        <div class="panel" id="panelInfo">
+
+            <h2 class="titulo-panel">Selecciona una materia</h2>
+
+            <!-- Lista de materias -->
+            <div class="materias" id="listaMaterias">
+                <div class="materia-item" onclick="mostrarAsistencias('Desarrollo 8')">Desarrollo 8</div>
+                <div class="materia-item" onclick="mostrarAsistencias('Redes de Computadoras')">Redes de Computadoras</div>
+                <div class="materia-item" onclick="mostrarAsistencias('Sistemas Operativos')">Sistemas Operativos</div>
+                <div class="materia-item" onclick="mostrarAsistencias('Lógica')">Lógica</div>
+            </div>
+
+            <!-- Aquí aparecerán las asistencias -->
+            <div id="listaAsistencias" class="asistencias"></div>
+
+        </div>
+
+    </div>
+
+<script>
+function mostrarMaterias() {
+    document.getElementById("listaAsistencias").innerHTML = "";
+    document.querySelector(".titulo-panel").innerText = "Selecciona una materia";
+    document.getElementById("listaMaterias").style.display = "block";
+}
+
+function mostrarAsistencias(materia) {
+    document.querySelector(".titulo-panel").innerText = materia;
+
+    let html = `
+        <div class="asistencia-item">Asistencia (11/28/2025) <button class="btn">PDF</button></div>
+        <div class="asistencia-item">Asistencia (11/25/2025) <button class="btn">PDF</button></div>
+        <div class="asistencia-item">Asistencia (11/20/2025) <button class="btn">PDF</button></div>
+    `;
+
+    document.getElementById("listaMaterias").style.display = "none";
+    document.getElementById("listaAsistencias").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
