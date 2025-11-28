@@ -5,6 +5,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* BODY COMO CONTENEDOR FLEX */
+body {
+    background-color: #222;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* NAVBAR */
 .navbar {
     width: 100%;
@@ -33,10 +41,10 @@
     background: #c9c9c9;
 }
 
-/* CONTENIDO */
+/* CONTENIDO QUE OCUPA TODO EL ESPACIO */
 .content {
     background: #552b7f;
-    min-height: calc(100vh - 150px);
+    flex: 1;          /* OCUPA TODO EL ESPACIO ENTRE NAV Y FOOTER */
     padding: 40px;
     color: white;
 }
@@ -84,6 +92,5 @@
     color: #ccc;
     text-align: center;
     padding: 18px;
-    margin-top: 0;
     font-size: 14px;
 }
