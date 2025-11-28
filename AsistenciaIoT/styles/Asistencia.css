@@ -1,11 +1,25 @@
-/* GENERAL */
+/* ============================
+      GENERAL
+============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: #532b80;
     margin: 0;
     font-family: "Segoe UI", Arial;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* NAVBAR */
+
+/* ============================
+      NAVBAR (MISMO DE INICIO)
+============================ */
 .navbar {
     display: flex;
     justify-content: center;
@@ -46,7 +60,15 @@ body {
     left: 0;
 }
 
-/* CONTENIDO PRINCIPAL */
+.nav-item:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+
+/* ============================
+      CONTENIDO PRINCIPAL
+============================ */
 .contenido {
     display: flex;
     width: 90%;
@@ -56,9 +78,13 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    margin-bottom: 40px; /* para separar del footer */
 }
 
-/* SIDEBAR IZQUIERDO */
+
+/* ============================
+      SIDEBAR IZQUIERDO
+============================ */
 .sidebar {
     width: 25%;
     background: #f5f5f5;
@@ -91,7 +117,10 @@ body {
     border-color: #532b80;
 }
 
-/* PANEL DERECHO */
+
+/* ============================
+      PANEL DERECHO
+============================ */
 .panel {
     width: 75%;
     padding: 25px;
@@ -104,7 +133,10 @@ body {
     margin-bottom: 20px;
 }
 
-/* MATERIAS */
+
+/* ============================
+      MATERIAS
+============================ */
 .materia-item {
     background: #e8e8e8;
     padding: 14px;
@@ -119,7 +151,10 @@ body {
     background: #d6d6d6;
 }
 
-/* ASISTENCIAS */
+
+/* ============================
+      ASISTENCIAS
+============================ */
 .asistencia-item {
     background: #f4f4f4;
     padding: 14px;
@@ -138,4 +173,17 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+
+/* ============================
+      FOOTER (MISMO DE INICIO)
+============================ */
+.footer {
+    background: #111;
+    color: #ccc;
+    text-align: center;
+    padding: 18px;
+    font-size: 14px;
+    margin-top: auto;
 }
