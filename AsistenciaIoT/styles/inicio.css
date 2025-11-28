@@ -7,47 +7,68 @@
 
 /* BODY COMO CONTENEDOR FLEX */
 body {
-    background-color: #222;
-    height: 100vh;
+    background: #532b80;
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
-/* NAVBAR */
+/* ============================
+   NAVBAR MODERNO (SUPER PRO)
+============================ */
 .navbar {
-    width: 100%;
-    background: #eaeaea;
-    padding: 15px 0;
-}
-
-.navbar ul {
     display: flex;
     justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    padding: 18px 0;
     gap: 80px;
-    list-style: none;
+    width: 85%;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.15);
 }
 
-.navbar a {
-    text-decoration: none;
-    color: black;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 8px 20px;
-    border-radius: 8px;
+.nav-item {
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 6px;
+    transition: 0.3s ease;
 }
 
-.navbar a:hover,
-.navbar .active {
-    background: #c9c9c9;
+.nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    background: #000;
+    transition: 0.3s ease;
 }
+
+.nav-item.active::after,
+.nav-item:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+
+
 
 /* CONTENIDO QUE OCUPA TODO EL ESPACIO */
 .content {
-    background: #552b7f;
-    flex: 1;          /* OCUPA TODO EL ESPACIO ENTRE NAV Y FOOTER */
+    flex: 1;
     padding: 40px;
     color: white;
 }
+
 
 .titulo {
     font-size: 32px;
@@ -86,11 +107,12 @@ body {
     color: #666;
 }
 
-/* FOOTER */
 .footer {
     background: #111;
     color: #ccc;
     text-align: center;
-    padding: 18px;
-    font-size: 14px;
+    padding: 15px;
+    font-size: 13px;
+    margin-top: 40px;
 }
+

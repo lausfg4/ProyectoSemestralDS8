@@ -1,39 +1,46 @@
 /* ============================
-   FONDO GENERAL
+   ESTILO GENERAL (IGUAL A INICIO)
 ============================ */
-body {
-    background: #532b80;
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Segoe UI", Arial, sans-serif;
 }
 
+body {
+    background: #532b80;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 /* ============================
-   NAVBAR MODERNO
+   NAVBAR (IGUAL A INICIO)
 ============================ */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
     background: #ffffff;
-    padding: 22px 0;
-    gap: 90px;
-    width: 90%;
-    margin: 25px auto;
-    border-radius: 22px;
-    box-shadow: 0px 5px 18px rgba(0,0,0,0.18);
+    padding: 18px 0;
+    gap: 80px;
+    width: 85%;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: 0px 4px 16px rgba(0,0,0,0.18);
 }
 
 .nav-item {
     color: #000;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
     cursor: pointer;
     position: relative;
-    padding-bottom: 6px;
-    transition: 0.3s ease;
+    padding-bottom: 4px;
+    transition: .3s ease;
 }
 
-/* Subrayado animado */
 .nav-item::after {
     content: "";
     position: absolute;
@@ -42,7 +49,7 @@ body {
     bottom: 0;
     left: 50%;
     background: #000;
-    transition: 0.3s ease;
+    transition: .3s ease;
 }
 
 .nav-item:hover::after,
@@ -51,24 +58,22 @@ body {
     left: 0;
 }
 
-/* Hover */
 .nav-item:hover {
-    opacity: 0.7;
+    opacity: .7;
     transform: translateY(-2px);
 }
 
 /* ============================
-   CONTENEDOR CENTRAL
+   CONTENEDOR DEL HORARIO
 ============================ */
 .pantalla {
+    flex: 1;
     display: flex;
     justify-content: center;
-    padding-top: 5px;
+    padding-top: 10px;
+    margin-bottom: 40px; /* separa del footer */
 }
 
-/* ============================
-   TARJETA DEL HORARIO
-============================ */
 .contenedor-horario {
     width: 90%;
     max-width: 1300px;
@@ -76,6 +81,9 @@ body {
     justify-content: center;
 }
 
+/* ============================
+   TABLA DEL HORARIO (MISMOS BORDES)
+============================ */
 .tabla-horario {
     width: 100%;
     border-collapse: separate;
@@ -87,27 +95,23 @@ body {
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
 
-/* ============================
-   ENCABEZADOS
-============================ */
-
-/* HORAS */
+/* Encabezado HORAS */
 .tabla-horario th:first-child {
     background: #1f1f1f;
-    color: white;
+    color: #fff;
     padding: 14px;
     font-size: 16px;
 }
 
-/* DÍAS */
+/* Encabezados DÍAS */
 .tabla-horario th:not(:first-child) {
     background: #ffffff;
-    color: #000000;
+    color: #000;
     padding: 14px;
     font-size: 16px;
-    border-bottom: 2px solid #000;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    border-bottom: 2px solid #000;
+    letter-spacing: .5px;
 }
 
 /* ============================
@@ -120,49 +124,48 @@ body {
     transition: 0.25s ease;
 }
 
-/* Columna HORAS */
 .hora {
     background: #f7f7f7;
     font-weight: bold;
     border-right: 2px solid #e4e4e4;
 }
 
-/* Hover moderno de filas */
 .tabla-horario tr:hover td:not(.hora) {
-    background-color: #fafafa;
+    background: #fafafa;
 }
 
-/* ============================
-   COLORES (BACKEND ACTIVARÁ)
-============================ */
+/* COLORES DE MATERIAS */
 .materia {
-    border-radius: 10px;
     padding: 10px;
-    transition: background 0.4s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
 }
 
-/* sombras internas */
 .verde {
     background: #7ee68d;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-    font-weight: bold;
 }
 
 .rojo {
     background: #ff6b6b;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-    font-weight: bold;
 }
 
 .amarillo {
     background: #ffd86b;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-    font-weight: bold;
+}
+
+/* Celdas vacías */
+.tabla-horario td:empty {
+    background: #fdfdfd;
 }
 
 /* ============================
-   CELDAS VACÍAS
+   FOOTER (IGUAL A INICIO)
 ============================ */
-.tabla-horario td:empty {
-    background: #fdfdfd;
+.footer {
+    background: #111;
+    color: #ccc;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
 }
