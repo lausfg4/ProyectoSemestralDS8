@@ -39,6 +39,7 @@ body {
     position: relative;
     padding-bottom: 4px;
     transition: .3s ease;
+    text-decoration: none;
 }
 
 .nav-item::after {
