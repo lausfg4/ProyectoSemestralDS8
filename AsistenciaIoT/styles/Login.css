@@ -86,3 +86,24 @@ body {
     margin-top: 8px;
     font-size: 15px;
 }
+
+/* Botón de iniciar sesión */
+.btn-login {
+    width: 60%;
+    background: #532b80;
+    color: white;
+    border: none;
+    padding: 14px;
+    margin-top: 18px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #3e2161;
+    transform: translateY(-3px);
+}
+
