@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #222;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;      /* Ocupa toda la pantalla */
+    display: flex;
+}
+
+/* Panel izquierdo */
+.left {
+    width: 50%;
+    height: 100%;       /* Ocupa toda la altura */
+    background: #8A2BE2;
+    color: white;
+    padding: 60px;
+}
+
+.left h1 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+.ilustracion {
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 15px;
+}
+
+/* Panel derecho */
+.right {
+    width: 50%;
+    height: 100%;       /* Ocupa toda la altura */
+    background: #dcdcdc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar img {
+    width: 50px;
+    filter: invert(100%);
+}
+
+.input {
+    width: 60%;
+    background: #c79deb;
+    border: none;
+    padding: 14px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+.forgot {
+    margin-top: 8px;
+    font-size: 15px;
+}
