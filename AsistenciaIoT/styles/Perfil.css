@@ -1,10 +1,24 @@
+/* ============================
+      GENERAL
+============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: #532b80;
     margin: 0;
     font-family: "Segoe UI", Arial;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/* NAVBAR igual al resto del sistema */
+/* ============================
+      NAVBAR (MISMO DE INICIO)
+============================ */
 .navbar {
     display: flex;
     justify-content: center;
@@ -45,10 +59,18 @@ body {
     left: 0;
 }
 
-/* TARJETA PRINCIPAL */
+.nav-item:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+/* ============================
+      CONTENIDO PRINCIPAL
+============================ */
 .container {
     width: 90%;
     margin: 0 auto;
+    flex: 1;                  /* 🔥 Empuja el footer hacia abajo */
 }
 
 .card {
@@ -58,10 +80,13 @@ body {
     display: flex;
     gap: 40px;
     margin-top: 20px;
+    margin-bottom: 40px;      /* 🔥 Espacio para que no toque el footer */
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
 
-/* IZQUIERDA */
+/* ============================
+      COLUMNA IZQUIERDA
+============================ */
 .left {
     width: 35%;
     text-align: center;
@@ -83,7 +108,9 @@ body {
     color: #333;
 }
 
-/* DERECHA */
+/* ============================
+      COLUMNA DERECHA
+============================ */
 .right {
     width: 65%;
     padding-left: 20px;
@@ -96,4 +123,17 @@ body {
 
 strong {
     color: #532b80;
+}
+
+/* ============================
+      FOOTER (MISMO DE INICIO)
+============================ */
+.footer {
+    background: #111;
+    color: #ccc;
+    text-align: center;
+    padding: 18px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: auto;   /* 🔥 Mantiene el footer abajo SIEMPRE */
 }
