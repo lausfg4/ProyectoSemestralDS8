@@ -1,36 +1,45 @@
 /* ============================
-      GENERAL
+      GENERAL + FONDO
 ============================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
-    background: #532b80;
-    margin: 0;
-    font-family: "Segoe UI", Arial;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+    /* 🔥 Fondo futurista */
+    background-image: url("../images/fondoWeb.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-
 /* ============================
-      NAVBAR (MISMO DE INICIO)
+      NAVBAR GLASSMORPHISM
 ============================ */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     padding: 22px 0;
     gap: 80px;
     width: 90%;
     margin: 25px auto;
     border-radius: 22px;
-    box-shadow: 0px 5px 18px rgba(0,0,0,0.18);
+    box-shadow: 0px 5px 25px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.45);
 }
 
 .nav-item {
@@ -40,7 +49,7 @@ body {
     cursor: pointer;
     position: relative;
     padding-bottom: 6px;
-    transition: 0.3s ease;
+    transition: .3s ease;
     text-decoration: none;
 }
 
@@ -52,7 +61,7 @@ body {
     bottom: 0;
     left: 50%;
     background: #000;
-    transition: 0.3s ease;
+    transition: .3s ease;
 }
 
 .nav-item:hover::after,
@@ -62,45 +71,51 @@ body {
 }
 
 .nav-item:hover {
-    opacity: 0.7;
+    opacity: .75;
     transform: translateY(-2px);
 }
 
-
 /* ============================
-      CONTENIDO PRINCIPAL
+      CONTENEDOR PRINCIPAL
 ============================ */
 .contenido {
     display: flex;
     width: 90%;
     height: 75vh;
-    margin: 0 auto;
-    background: white;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    margin-bottom: 40px; /* para separar del footer */
+
+    margin: 0 auto;
+    margin-bottom: 40px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
 
-
 /* ============================
-      SIDEBAR IZQUIERDO
+      SIDEBAR IZQUIERDA
 ============================ */
 .sidebar {
     width: 25%;
-    background: #f5f5f5;
+    background: rgba(245, 245, 245, 0.65);
     padding: 20px;
-    border-right: 2px solid #ddd;
+    border-right: 2px solid rgba(200,200,200,0.5);
 }
 
 .sidebar h2 {
-    margin-top: 0;
     font-size: 22px;
     margin-bottom: 20px;
+    font-weight: 700;
+    color: #2c2c2c;
 }
 
 .grupo-item {
-    background: white;
+    background: rgba(255,255,255,0.9);
     padding: 12px;
     margin-bottom: 12px;
     border-radius: 12px;
@@ -108,16 +123,18 @@ body {
     font-weight: 600;
     border: 2px solid transparent;
     transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
 }
 
 .grupo-item:hover {
     border-color: #532b80;
+    background: rgba(255,255,255,1);
 }
 
 .grupo-item.active {
     border-color: #532b80;
+    background: rgba(255,255,255,1);
 }
-
 
 /* ============================
       PANEL DERECHO
@@ -132,39 +149,43 @@ body {
     font-size: 26px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #2b2b2b;
 }
-
 
 /* ============================
       MATERIAS
 ============================ */
 .materia-item {
-    background: #e8e8e8;
+    background: rgba(240, 240, 240, 0.9);
     padding: 14px;
     margin-bottom: 12px;
     border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    transition: .2s;
+    transition: .25s;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
 }
 
 .materia-item:hover {
-    background: #d6d6d6;
+    background: rgba(225, 225, 225, 0.95);
 }
-
 
 /* ============================
       ASISTENCIAS
 ============================ */
 .asistencia-item {
-    background: #f4f4f4;
+    background: rgba(255,255,255,0.9);
     padding: 14px;
     margin-bottom: 10px;
     border-radius: 10px;
     font-size: 17px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    border-left: 4px solid #532b80;
 }
 
 .btn {
@@ -174,17 +195,26 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
 }
 
+.btn:hover {
+    background: #3f2162;
+}
 
 /* ============================
-      FOOTER (MISMO DE INICIO)
+      FOOTER GLASS
 ============================ */
 .footer {
-    background: #111;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
     color: #ccc;
     text-align: center;
     padding: 18px;
     font-size: 14px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
     margin-top: auto;
 }
