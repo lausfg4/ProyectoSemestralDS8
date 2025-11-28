@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #222;
+    background-color: #532b80;
     width: 100vw;
     height: 100vh;
     overflow: hidden; 
@@ -22,7 +22,7 @@ body {
 .left {
     width: 50%;
     height: 100%;       /* Ocupa toda la altura */
-    background: #8A2BE2;
+    background: #532b80;
     color: white;
     padding: 60px;
 }
