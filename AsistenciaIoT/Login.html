@@ -5,47 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
-    <!-- Enlace al CSS externo -->
     <link rel="stylesheet" href="styles/login.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
     <div class="container">
-        
+
         <!-- PANEL IZQUIERDO -->
         <div class="left">
             <h1>Bienvenido al<br>Sistema de Gestión<br>de Asistencia</h1>
-
-            <img class="ilustracion" 
-                 src="images/imagen_login.png" 
-                 alt="Ilustración de asistencia">
+            <img class="ilustracion" src="images/imagen_login.png">
         </div>
 
         <!-- PANEL DERECHO -->
         <div class="right">
-
-            <h2>Login</h2>
+            <h2>Iniciar Sesión</h2>
 
             <div class="avatar">
-                 <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
             </div>
 
-                <input type="text" class="input" placeholder="Usuario">
-                <input type="password" class="input" placeholder="Contraseña">
+            <input type="text" id="usuario" class="input" placeholder="Usuario">
+            <input type="password" id="contrasena" class="input" placeholder="Contraseña">
 
-             <p class="forgot">¿Contraseña olvidada?</p>
+            <p class="forgot">¿Olvidaste tu contraseña?</p>
 
-            <!-- NUEVO BOTÓN -->
-           <button class="btn-login" onclick="window.location.href='Inicio.html'">
-                Iniciar sesión
-           </button>
-
-
+            <button class="btn-login" onclick="login()">Ingresar</button>
         </div>
 
-
     </div>
+
+    <!-- SCRIPT DE LOGIN -->
+    <script>
+    async function login() {
+
+        const usuario = document.getElementById("usuario");
+        const contrasena = document.getElementById("contrasena");
+
+        usuario.classList.remove("error");
+        contrasena.classList.remove("error");
+
+        // Validación
+        if (!usuario.value.trim() || !contrasena.value.trim()) {
+
+            if (!usuario.value.trim()) usuario.classList.add("error");
+            if (!contrasena.value.trim()) contrasena.classList.add("error");
+
+            Swal.fire({
+                icon: "warning",
+                title: "Campos vacíos",
+                text: "Por favor rellena todos los campos.",
+                confirmButtonColor: "#532b80"
+            });
+
+            return;
+        }
+
+        // Loading animación
+        Swal.fire({
+            title: "Validando...",
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+
+        try {
+
+            const response = await fetch("http://161.35.190.4:8000/api/login/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    username: usuario.value.trim(),
+                    password: contrasena.value.trim()
+                })
+            });
+
+            // Convertir en texto primero para evitar errores
+            let raw = await response.text();
+            console.log("Respuesta RAW del servidor:", raw);
+
+            // Intentar convertir a JSON
+            let data;
+            try {
+                data = JSON.parse(raw);
+            } catch (e) {
+                throw new Error("Respuesta no es JSON válido: " + raw);
+            }
+
+            if (!response.ok) {
+                Swal.close();
+                Swal.fire({
+                    icon: "error",
+                    title: "Error de ingreso",
+                    text: data.detail || data.message || "Credenciales incorrectas.",
+                    confirmButtonColor: "#532b80"
+                });
+                return;
+            }
+
+            // ⬇⬇ Guardar token en localStorage ⬇⬇
+            localStorage.setItem("token", data.token);
+            console.log("Token guardado:", data.token);
+
+            Swal.close();
+            Swal.fire({
+                icon: "success",
+                title: "Ingreso exitoso",
+                showConfirmButton: false,
+                timer: 1200
+            }).then(() => {
+                window.location.href = "Inicio.html";
+            });
+
+        } catch (error) {
+
+            Swal.close();
+            Swal.fire({
+                icon: "error",
+                title: "Error de conexión",
+                text: "No se pudo conectar con el servidor.",
+                confirmButtonColor: "#532b80"
+            });
+
+            console.error("Error en login():", error);
+        }
+    }
+    </script>
 
 </body>
 </html>

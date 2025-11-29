@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <title>Horario</title>
 
-    <!-- Enlace a tu CSS -->
     <link rel="stylesheet" href="styles/Horario.css">
+
+    <style>
+        /* Colores de asistencia */
+        .presente {
+            background: #7ee68d !important;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        .ausente {
+            background: #ff6b6b !important;
+            color: white !important;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-            <div class="navbar">
-                <a class="nav-item" href="Inicio.html">Inicio</a>
-                <a class="nav-item" href="Horario.html">Horario</a>
-                <a class="nav-item" href="Asitencia.html">Asistencia</a>
-                <a class="nav-item" href="Perfil.html">Perfil</a>
-            </div>
-
+    <div class="navbar">
+        <a class="nav-item" href="Inicio.html">Inicio</a>
+        <a class="nav-item active" href="Horario.html">Horario</a>
+        <a class="nav-item" href="Asistencia.html">Asistencia</a>
+        <a class="nav-item" href="Perfil.html">Perfil</a>
+    </div>
 
     <!-- CONTENEDOR DE LA PANTALLA COMPLETA -->
     <div class="pantalla">
-
-        <!-- CONTENEDOR DE HORARIO -->
         <div class="contenedor-horario">
+
             <table class="tabla-horario">
                 <thead>
                     <tr>
@@ -39,62 +51,148 @@
                 </thead>
 
                 <tbody>
+
+                    <!-- =================  FILA 1 ================= -->
                     <tr>
                         <td class="hora">7:50–8:35 A.M.</td>
-                        <td class="materia verde">LÓG. I<br>A3-319</td>
+
+                        <td id="celda-lunes-07:50">LEG. LAB. E IN.<br>A3-319</td>
                         <td></td>
-                        <td class="materia verde">RED. COMPUT I<br>3-312</td>
-                        <td class="materia verde">RED. COMPUT I<br>3-312</td>
-                        <td class="materia verde">ING. DE SOFT<br>4-402</td>
-                        <td></td><td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="celda-viernes-07:50">ING. DE SOFT<br>4-402</td>
+                        <td></td>
+                        <td></td>
                     </tr>
 
+                    <!-- =================  FILA 2 ================= -->
                     <tr>
                         <td class="hora">8:40–9:25 A.M.</td>
-                        <td class="materia verde">LÓG. I<br>A3-319</td>
-                        <td></td>
-                        <td class="materia verde">RED. COMPUT I<br>3-312</td>
-                        <td class="materia verde">RED. COMPUT I<br>3-312</td>
-                        <td class="materia verde">ING. DE SOFT<br>4-402</td>
+
+                        <td id="celda-lunes-08:40">LEG. LAB. E IN.<br>A3-319</td>
+                        <td id="celda-martes-08:40">RED. COMPUT(L)<br>A3-402</td>
+                        <td id="celda-miercoles-08:40">ING. DE SOFT<br>3-312</td>
+                        <td id="celda-jueves-08:40">RED. COMPUT<br>3-312</td>
+                        <td id="celda-viernes-08:40">ING. DE SOFT<br>4-402</td>
                         <td></td><td></td>
                     </tr>
 
+                    <!-- =================  FILA 3 ================= -->
                     <tr>
                         <td class="hora">9:30–10:15 A.M.</td>
-                        <td class="materia rojo">LÓG. I<br>A3-319</td>
-                        <td class="materia amarillo">ING. DE SOFT<br>4-402</td>
-                        <td></td>
-                        <td class="materia amarillo">DES. SOFT VI<br>4-402</td>
-                        <td></td><td></td><td></td>
+
+                        <td id="celda-lunes-09:30">LEG. LAB. E IN.(L)<br>A3-319</td>
+                        <td id="celda-martes-09:30">RED. COMPUT<br>A3-402</td>
+                        <td id="celda-miercoles-09:30">ING. DE SOFT<br>3-312</td>
+                        <td id="celda-jueves-09:30">DES. SOFT VIII<br>3-407</td>
+                        <td id="celda-viernes-09:30">ING. DE SOFT(L)<br>4-402</td>
+                        <td></td><td></td>
                     </tr>
 
+                    <!-- =================  FILA 4 ================= -->
                     <tr>
                         <td class="hora">10:20–11:05 A.M.</td>
-                        <td class="materia verde">SISTEMAS OPERA<br>3-322</td>
-                        <td></td>
-                        <td class="materia verde">DES. SOFT VI<br>4-402</td>
-                        <td class="materia verde">SISTEMAS OPERA<br>3-322</td>
-                        <td></td><td></td><td></td>
+
+                        <td id="celda-lunes-10:20">SISTEMAS OPERA<br>A3-319</td>
+                        <td id="celda-martes-10:20">DES. SOFT VIII<br>A3-318</td>
+                        <td id="celda-miercoles-10:20">SISTEMAS OPERA(L)<br>A3-423</td>
+                        <td id="celda-jueves-10:20">DES. SOFT VIII(L)<br>A3-407</td>
+                        <td id="celda-viernes-10:20">SISTEMAS OPERA(L)<br>A4-402</td>
+                        <td></td><td></td>
                     </tr>
 
+                    <!-- =================  FILA 5 ================= -->
                     <tr>
                         <td class="hora">11:10–11:55 A.M.</td>
-                        <td class="materia rojo">SISTEMAS OPERA<br>3-322</td>
-                        <td></td>
-                        <td class="materia rojo">DES. SOFT VI<br>4-402</td>
-                        <td class="materia rojo">SISTEMAS OPERA<br>3-322</td>
-                        <td></td><td></td><td></td>
+
+                        <td id="celda-lunes-11:10">SISTEMAS OPERA<br>A3-319</td>
+                        <td id="celda-martes-11:10">DES. SOFT VIII<br>A3-318</td>
+                        <td id="celda-miercoles-11:10">SISTEMAS OPERA(L)<br>A3-423</td>
+                        <td id="celda-jueves-11:10">DES. SOFT VIII(L)<br>A3-407</td>
+                        <td id="celda-viernes-11:10">SISTEMAS OPERA(L)<br>A4-402</td>
+                        <td></td><td></td>
                     </tr>
 
                 </tbody>
             </table>
+
         </div>
     </div>
 
-        <!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 Sistema de Gestión de Asistencia IoT — Todos los derechos reservados.</p>
     </footer>
+
+
+    <!-- ==========================================
+           SCRIPT PARA PINTAR ASISTENCIAS
+    ============================================= -->
+    <script>
+
+document.addEventListener("DOMContentLoaded", cargarAsistencia);
+
+function formatearHora(hora) {
+    return hora.substring(0, 5); // "09:30"
+}
+
+async function cargarAsistencia() {
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+        console.error("No hay token guardado.");
+        return;
+    }
+
+    try {
+        const resp = await fetch("http://161.35.190.4:8000/api/asistencia_estudiante/", {
+    headers: {
+        "Authorization": "Token " + token
+    }
+});
+
+
+        const asistencias = await resp.json();
+        console.log("Asistencias recibidas:", asistencias);
+
+        if (!Array.isArray(asistencias)) {
+            console.error("El API no devolvió un array:", asistencias);
+            return;
+        }
+
+        asistencias.forEach(a => {
+
+            // Día en minúsculas para que coincida con IDs del HTML
+            let dia = a.dia.toLowerCase();
+
+            // Hora formateada para buscar la celda
+            let hora = formatearHora(a.inicio);
+
+            // ID de la celda destino
+            let celdaID = `celda-${dia}-${hora}`;
+
+            let celda = document.getElementById(celdaID);
+
+            if (!celda) {
+                console.warn("No existe la celda:", celdaID);
+                return;
+            }
+
+            // Aplicar clases según asistencia
+            if (a.presente) {
+                celda.classList.add("presente");
+            } else {
+                celda.classList.add("ausente");
+            }
+        });
+
+    } catch (error) {
+        console.error("Error cargando asistencia:", error);
+    }
+}
+
+</script>
+
 
 </body>
 </html>
