@@ -1,34 +1,58 @@
+/* IMPORTAR FUENTE PREMIUM */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* RESETEO */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
-/* BODY COMO CONTENEDOR FLEX */
+/* BODY */
 body {
-    background: #532b80;
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  /* Imagen de fondo */
+  background-image: url("../images/fondoWeb.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Overlay para mejorar contraste */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35); /* Suaviza y embellece */
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* ============================
-   NAVBAR MODERNO (SUPER PRO)
+   NAVBAR GLASSMORPHISM PRO
 ============================ */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 18px 0;
     gap: 80px;
     width: 85%;
     margin: 20px auto;
     border-radius: 20px;
-    box-shadow: 0px 4px 16px rgba(0,0,0,0.15);
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.30);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
 .nav-item {
@@ -60,23 +84,26 @@ body {
 }
 
 
-
-
-
-/* CONTENIDO QUE OCUPA TODO EL ESPACIO */
+/* ============================
+   CONTENIDO
+============================ */
 .content {
     flex: 1;
     padding: 40px;
     color: white;
 }
 
-
 .titulo {
-    font-size: 32px;
+    font-size: 38px;
     margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255,255,255,0.25);
 }
 
-/* TARJETAS */
+
+/* ============================
+   TARJETAS 💎 (PREMIUM)
+============================ */
 .cards {
     display: flex;
     justify-content: center;
@@ -85,22 +112,30 @@ body {
 }
 
 .card {
-    background: white;
+    background: rgba(255,255,255,0.95);
     color: #333;
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 320px;
+    padding: 25px;
+    border-radius: 18px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 
 .card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 21px;
+    margin-bottom: 12px;
 }
 
 .card p {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .card .fecha {
@@ -108,12 +143,16 @@ body {
     color: #666;
 }
 
+
+/* ============================
+   FOOTER ELEGANTE
+============================ */
 .footer {
-    background: #111;
+    background: rgba(0,0,0,0.85);
     color: #ccc;
     text-align: center;
     padding: 15px;
     font-size: 13px;
-    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(6px);
 }
-

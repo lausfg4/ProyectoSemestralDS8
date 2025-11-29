@@ -1,5 +1,5 @@
 /* ============================
-   ESTILO GENERAL (IGUAL A INICIO)
+      GENERAL + FONDO
 ============================ */
 * {
     margin: 0;
@@ -9,26 +9,38 @@
 }
 
 body {
-    background: #532b80;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+
+    /* 🔥 Fondo igual que Inicio y Perfil */
+    background-image: url("../images/fondoWeb.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* ============================
-   NAVBAR (IGUAL A INICIO)
+      NAVBAR (CON TRANSPARENCIA)
 ============================ */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     padding: 18px 0;
     gap: 80px;
     width: 85%;
     margin: 20px auto;
     border-radius: 20px;
-    box-shadow: 0px 4px 16px rgba(0,0,0,0.18);
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
 .nav-item {
@@ -65,14 +77,14 @@ body {
 }
 
 /* ============================
-   CONTENEDOR DEL HORARIO
+      CONTENEDOR PRINCIPAL
 ============================ */
 .pantalla {
     flex: 1;
     display: flex;
     justify-content: center;
-    padding-top: 10px;
-    margin-bottom: 40px; /* separa del footer */
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .contenedor-horario {
@@ -83,59 +95,64 @@ body {
 }
 
 /* ============================
-   TABLA DEL HORARIO (MISMOS BORDES)
+      TABLA CON TRANSPARENCIA
 ============================ */
 .tabla-horario {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background: #ffffff;
+
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.30);
+    border: 1px solid rgba(255,255,255,0.4);
+
     font-size: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
 }
 
 /* Encabezado HORAS */
 .tabla-horario th:first-child {
-    background: #1f1f1f;
+    background: rgba(31, 31, 31, 0.9);
     color: #fff;
     padding: 14px;
     font-size: 16px;
 }
 
-/* Encabezados DÍAS */
+/* Encabezados días */
 .tabla-horario th:not(:first-child) {
-    background: #ffffff;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+
     color: #000;
     padding: 14px;
     font-size: 16px;
     font-weight: 700;
-    border-bottom: 2px solid #000;
-    letter-spacing: .5px;
+    border-bottom: 2px solid rgba(0,0,0,0.8);
 }
 
 /* ============================
-   CELDAS
+      CELDAS
 ============================ */
 .tabla-horario td {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(200,200,200,0.5);
     padding: 16px;
     text-align: center;
     transition: 0.25s ease;
 }
 
 .hora {
-    background: #f7f7f7;
+    background: rgba(247, 247, 247, 0.9);
     font-weight: bold;
-    border-right: 2px solid #e4e4e4;
+    border-right: 2px solid rgba(200,200,200,0.6);
 }
 
 .tabla-horario tr:hover td:not(.hora) {
-    background: #fafafa;
+    background: rgba(255,255,255,0.65);
 }
 
-/* COLORES DE MATERIAS */
+/* COLORES */
 .materia {
     padding: 10px;
     border-radius: 10px;
@@ -155,18 +172,17 @@ body {
     background: #ffd86b;
 }
 
-/* Celdas vacías */
-.tabla-horario td:empty {
-    background: #fdfdfd;
-}
-
 /* ============================
-   FOOTER (IGUAL A INICIO)
+      FOOTER TRANSPARENTE
 ============================ */
 .footer {
-    background: #111;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
     color: #ccc;
     text-align: center;
     padding: 15px;
     font-size: 13px;
+    border-top: 1px solid rgba(255,255,255,0.15);
 }

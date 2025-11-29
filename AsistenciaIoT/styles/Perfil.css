@@ -1,35 +1,63 @@
 /* ============================
+      FUENTE PREMIUM
+============================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+
+/* ============================
       GENERAL
 ============================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", Arial, sans-serif;
 }
 
 body {
-    background: #532b80;
     margin: 0;
-    font-family: "Segoe UI", Arial;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+
+  /* Imagen de fondo */
+  background-image: url("../images/fondoWeb.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
 }
 
+/* Si quieres EN EL FUTURO agregar overlay para fondo: */
+/*
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: -1;
+}
+*/
+
+
 /* ============================
-      NAVBAR (MISMO DE INICIO)
+      NAVBAR GLASSMORPHISM
 ============================ */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 22px 0;
     gap: 80px;
     width: 90%;
     margin: 25px auto;
     border-radius: 22px;
-    box-shadow: 0px 5px 18px rgba(0,0,0,0.18);
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
 .nav-item {
@@ -65,25 +93,46 @@ body {
     transform: translateY(-2px);
 }
 
+
 /* ============================
       CONTENIDO PRINCIPAL
 ============================ */
 .container {
     width: 90%;
     margin: 0 auto;
-    flex: 1;                  /* 🔥 Empuja el footer hacia abajo */
+    flex: 1;
 }
 
+
+/* ============================
+      TARJETA DE PERFIL PRO
+============================ */
 .card {
-    background: white;
+    background: rgba(255, 255, 255, 0.85); /* Igual que el footer pero más legible */
     border-radius: 22px;
-    padding: 25px;
+    padding: 30px;
     display: flex;
     gap: 40px;
     margin-top: 20px;
-    margin-bottom: 40px;      /* 🔥 Espacio para que no toque el footer */
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    margin-bottom: 40px;
+
+    /* GLASSMORPHISM */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    /* Sombras suaves y profesionales */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.30);
+    border: 1px solid rgba(255,255,255,0.35);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.40);
+}
+
+
 
 /* ============================
       COLUMNA IZQUIERDA
@@ -96,11 +145,12 @@ body {
 }
 
 .foto-perfil img {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid #532b80;
+    border: 5px solid #532b80;
+    box-shadow: 0 0 12px rgba(0,0,0,0.25);
 }
 
 .cedula {
@@ -108,6 +158,7 @@ body {
     font-size: 16px;
     color: #333;
 }
+
 
 /* ============================
       COLUMNA DERECHA
@@ -119,22 +170,26 @@ body {
 
 .right p {
     font-size: 18px;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 strong {
     color: #532b80;
+    font-weight: 700;
 }
 
+
 /* ============================
-      FOOTER (MISMO DE INICIO)
+      FOOTER PROFESIONAL
 ============================ */
 .footer {
-    background: #111;
+    background: rgba(0,0,0,0.85);
     color: #ccc;
     text-align: center;
     padding: 18px;
     font-size: 14px;
     width: 100%;
-    margin-top: auto;   /* 🔥 Mantiene el footer abajo SIEMPRE */
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(5px);
 }
