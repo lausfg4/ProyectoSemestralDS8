@@ -1,158 +1,155 @@
-/* IMPORTAR FUENTE PREMIUM */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-/* RESETEO */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", Arial, Helvetica, sans-serif;
+/* ===========================
+   GENERAL
+=========================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial;
 }
 
-/* BODY */
-body {
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  /* Imagen de fondo */
-  background-image: url("../images/fondoWeb.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  position: relative;
+body{
+    background: url('../images/fondoWeb.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    color: white;
 }
 
-/* Overlay para mejorar contraste */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35); /* Suaviza y embellece */
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* ============================
-   NAVBAR GLASSMORPHISM PRO
-============================ */
+/* ===========================
+   NAVBAR
+=========================== */
 .navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 18px 0;
+    background: rgba(255,255,255,0.9);
+    padding: 18px;
     gap: 80px;
-    width: 85%;
-    margin: 20px auto;
+    width: 90%;
+    margin: 25px auto;
     border-radius: 20px;
-    box-shadow: 0px 8px 24px rgba(0,0,0,0.30);
-    border: 1px solid rgba(255,255,255,0.4);
 }
 
 .nav-item {
     color: #000;
     font-size: 24px;
     font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    padding-bottom: 6px;
-    transition: 0.3s ease;
     text-decoration: none;
+    position: relative;
 }
 
-.nav-item::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 3px;
-    bottom: 0;
-    left: 50%;
-    background: #000;
-    transition: 0.3s ease;
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
+.contenedor{
+    width:90%;
+    margin:auto;
+    padding-bottom:40px;
 }
 
-.nav-item.active::after,
-.nav-item:hover::after {
-    width: 100%;
-    left: 0;
+.titulo{
+    font-size:40px;
+    font-weight:700;
 }
 
-
-/* ============================
-   CONTENIDO
-============================ */
-.content {
-    flex: 1;
-    padding: 40px;
-    color: white;
+.subtitulo{
+    font-size:20px;
+    margin-bottom:25px;
 }
 
-.titulo {
-    font-size: 38px;
-    margin-bottom: 25px;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(255,255,255,0.25);
+/* ===========================
+   CARDS
+=========================== */
+.cards{
+    display:flex;
+    gap:25px;
+    margin-bottom:30px;
 }
 
-
-/* ============================
-   TARJETAS 💎 (PREMIUM)
-============================ */
-.cards {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+.card{
+    flex:1;
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    text-align:center;
 }
 
-.card {
-    background: rgba(255,255,255,0.95);
-    color: #333;
-    width: 320px;
-    padding: 25px;
-    border-radius: 18px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
-    border: 1px solid rgba(255,255,255,0.35);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+.card h3{
+    font-size:18px;
+    margin-bottom:10px;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+.card p{
+    font-size:28px;
+    font-weight:bold;
 }
 
-.card h3 {
-    font-size: 21px;
-    margin-bottom: 12px;
+/* ===========================
+   LISTAS
+=========================== */
+.seccion-titulo{
+    font-size:26px;
+    margin:20px 0 10px 0;
 }
 
-.card p {
-    font-size: 16px;
-    margin-bottom: 12px;
+.lista{
+    background: rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:25px;
+    backdrop-filter: blur(5px);
 }
 
-.card .fecha {
-    font-size: 14px;
-    color: #666;
+.item{
+    background: white;
+    color:black;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:12px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:600;
 }
 
+/* ===========================
+   NOTICIAS
+=========================== */
+.noticias{
+    display:flex;
+    gap:20px;
+    margin-bottom:40px;
+}
 
-/* ============================
-   FOOTER ELEGANTE
-============================ */
-.footer {
-    background: rgba(0,0,0,0.85);
-    color: #ccc;
-    text-align: center;
-    padding: 15px;
-    font-size: 13px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    backdrop-filter: blur(6px);
+.noticia{
+    background:white;
+    color:black;
+    padding:20px;
+    border-radius:18px;
+    flex:1;
+    box-shadow:0 8px 20px rgba(0,0,0,0.25);
+}
+
+.noticia h3{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.noticia span{
+    font-size:12px;
+    opacity:.7;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.footer{
+    background:#111;
+    color:#ccc;
+    text-align:center;
+    padding:15px;
+    margin-top:auto;
 }

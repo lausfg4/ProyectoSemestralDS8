@@ -157,20 +157,20 @@ body {
     padding: 10px;
     border-radius: 10px;
     font-weight: bold;
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    text-align: center;
+    transition: 0.3s ease;
 }
 
-.verde {
-    background: #7ee68d;
+.presente {
+    background: #7ee68d; /* Verde */
+    color: black;
 }
 
-.rojo {
-    background: #ff6b6b;
+.ausente {
+    background: #ff6b6b; /* Rojo */
+    color: white;
 }
 
-.amarillo {
-    background: #ffd86b;
-}
 
 /* ============================
       FOOTER TRANSPARENTE

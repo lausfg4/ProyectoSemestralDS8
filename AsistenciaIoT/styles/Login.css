@@ -1,109 +1,145 @@
+/* ================================
+        FUENTES Y RESET
+================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: #532b80;
-    width: 100vw;
     height: 100vh;
-    overflow: hidden; 
-}
-
-.container {
-    width: 100vw;
-    height: 100vh;      /* Ocupa toda la pantalla */
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    /* Fondo global de SIEMPRE */
+    background-image: url("../images/fondoWeb.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-/* Panel izquierdo */
+/* ================================
+        CONTENEDOR PRINCIPAL
+================================= */
+.container {
+    width: 950px;
+    height: 540px;
+    display: flex;
+    border-radius: 25px;
+    overflow: hidden;
+
+    /* efecto glass */
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* ================================
+        PANEL IZQUIERDO
+================================= */
 .left {
     width: 50%;
-    height: 100%;       /* Ocupa toda la altura */
-    background: #532b80;
+    padding: 45px;
+    background: rgba(84, 30, 138, 0.8);
     color: white;
-    padding: 60px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .left h1 {
-    font-size: 40px;
-    font-weight: bold;
-    line-height: 50px;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 800;
 }
 
 .ilustracion {
-    width: 100%;
-    margin-top: 40px;
-    border-radius: 15px;
+    margin-top: auto;
+    width: 90%;
 }
 
-/* Panel derecho */
+/* ================================
+        PANEL DERECHO
+================================= */
 .right {
     width: 50%;
-    height: 100%;       /* Ocupa toda la altura */
-    background: #dcdcdc;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background: white;
+    padding: 40px;
+    text-align: center;
 }
 
 .right h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 26px;
+    margin-bottom: 15px;
 }
 
-.avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
+/* Avatar */
 .avatar img {
-    width: 50px;
-    filter: invert(100%);
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    margin-bottom: 25px;
 }
 
+/* Inputs */
 .input {
-    width: 60%;
-    background: #c79deb;
-    border: none;
-    padding: 14px;
-    margin-bottom: 18px;
-    border-radius: 12px;
+    width: 85%;
+    padding: 13px;
     font-size: 16px;
-    outline: none;
+
+    margin-bottom: 18px;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+
+    background: #eaf0ff;
+    color: #333;
 }
 
-.forgot {
-    margin-top: 8px;
-    font-size: 15px;
+.input:focus {
+    border-color: #532b80;
+    background: white;
 }
 
-/* Botón de iniciar sesión */
+.error {
+    border: 2px solid red !important;
+    background: #ffd6d6 !important;
+}
+
+/* Botón */
 .btn-login {
-    width: 60%;
+    width: 85%;
+    padding: 14px;
+    font-size: 17px;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
     background: #532b80;
     color: white;
-    border: none;
-    padding: 14px;
-    margin-top: 18px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+    font-weight: 700;
+
+    transition: .25s;
 }
 
 .btn-login:hover {
-    background: #3e2161;
-    transform: translateY(-3px);
+    background: #3e226b;
+    transform: scale(1.03);
 }
 
+/* Olvidaste contraseña */
+.forgot {
+    font-size: 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    color: gray;
+}
+
+.forgot:hover {
+    color: black;
+}
