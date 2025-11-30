@@ -39,7 +39,10 @@
 
     </div>
 
-    <!-- SCRIPT DE LOGIN -->
+
+    <!-- ======================
+          SCRIPT LOGIN
+    ======================= -->
     <script>
     async function login() {
 
@@ -65,7 +68,7 @@
             return;
         }
 
-        // Loading animación
+        // Loading
         Swal.fire({
             title: "Validando...",
             allowOutsideClick: false,
@@ -83,11 +86,9 @@
                 })
             });
 
-            // Convertir en texto primero para evitar errores
             let raw = await response.text();
-            console.log("Respuesta RAW del servidor:", raw);
+            console.log("RAW del servidor:", raw);
 
-            // Intentar convertir a JSON
             let data;
             try {
                 data = JSON.parse(raw);
@@ -95,34 +96,53 @@
                 throw new Error("Respuesta no es JSON válido: " + raw);
             }
 
+            // Si hay error en login
             if (!response.ok) {
                 Swal.close();
                 Swal.fire({
                     icon: "error",
                     title: "Error de ingreso",
-                    text: data.detail || data.message || "Credenciales incorrectas.",
+                    text: data.error || data.detail || "Credenciales incorrectas.",
                     confirmButtonColor: "#532b80"
                 });
                 return;
             }
 
-            // ⬇⬇ Guardar token en localStorage ⬇⬇
+            // =========================
+            //  GUARDAR TOKEN Y ROL
+            // =========================
             localStorage.setItem("token", data.token);
-            console.log("Token guardado:", data.token);
 
+            const rol = (data.rol || "").toLowerCase().trim();
+            localStorage.setItem("rol", rol);
+
+            console.log("Token guardado:", data.token);
+            console.log("Rol recibido:", rol);
+
+            // =========================
+            //  LOGIN EXITOSO
+            // =========================
             Swal.close();
             Swal.fire({
                 icon: "success",
                 title: "Ingreso exitoso",
-                showConfirmButton: false,
-                timer: 1200
+                timer: 1200,
+                showConfirmButton: false
             }).then(() => {
-                window.location.href = "Inicio.html";
+
+                // REDIRECCIÓN SEGÚN ROL
+                if (rol === "profesor") {
+                    window.location.href = "InicioProfesor.html";
+                } else {
+                    window.location.href = "Inicio.html";
+                }
+
             });
 
         } catch (error) {
 
             Swal.close();
+
             Swal.fire({
                 icon: "error",
                 title: "Error de conexión",

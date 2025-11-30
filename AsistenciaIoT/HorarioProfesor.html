@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clases del Día — Profesor</title>
+
+    <link rel="stylesheet" href="styles/HorarioProfesor.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <a class="nav-item" href="InicioProfesor.html">Inicio</a>
+        <a class="nav-item" href="Asistencia.html">Asistencia</a>
+        <a class="nav-item active" href="HorarioProfesor.html">Horario</a>
+        <a class="nav-item" href="Perfil.html">Perfil</a>
+
+        <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div class="contenedor">
+
+        <h1 class="titulo">Clases Programadas Hoy</h1>
+        <p class="subtitulo">Estas son sus clases correspondientes al día de hoy.</p>
+
+        <!-- TABLA DE CLASES -->
+        <table class="tabla-horario">
+            <thead>
+                <tr>
+                    <th>Materia</th>
+                    <th>Hora Inicio</th>
+                    <th>Hora Fin</th>
+                </tr>
+            </thead>
+
+            <tbody id="tablaHorario">
+                <!-- Se llena con JavaScript -->
+            </tbody>
+        </table>
+
+        <div id="mensajeVacio" class="mensaje-vacio" style="display:none;">
+            No tiene clases programadas para hoy.
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 Sistema de Gestión de Asistencia IoT — Panel del Profesor
+    </footer>
+
+<script>
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("rol");
+    window.location.href = "login.html";
+}
+
+document.addEventListener("DOMContentLoaded", cargarClasesProfesor);
+
+async function cargarClasesProfesor() {
+
+    const token = localStorage.getItem("token");
+
+    console.log("TOKEN ENVIADO:", token);
+
+    try {
+        const resp = await fetch("http://161.35.190.4:8000/api/clases_del_dia/", {
+            headers: { 
+                "Authorization": "Token " + token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        const data = await resp.json();
+
+        console.log("RESPUESTA API:", data);
+
+        let tbody = document.getElementById("tablaHorario");
+        tbody.innerHTML = "";
+
+        // ❌ Si no es lista, significa error
+        if (!Array.isArray(data)) {
+            document.getElementById("mensajeVacio").style.display = "block";
+            document.getElementById("mensajeVacio").innerText = 
+                data.detail || data.error || "No se pudo cargar el horario.";
+            return;
+        }
+
+        // ✔ Si viene vacío
+        if (data.length === 0) {
+            document.getElementById("mensajeVacio").style.display = "block";
+            return;
+        }
+
+        document.getElementById("mensajeVacio").style.display = "none";
+
+        data.forEach(c => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${c.materia}</td>
+                    <td>${c.inicio.substring(0, 5)}</td>
+                    <td>${c.fin.substring(0, 5)}</td>
+                </tr>
+            `;
+        });
+
+    } catch (error) {
+        console.error("Error:", error);
+
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "No se pudo cargar el horario."
+        });
+    }
+}
+</script>
+
+
+</body>
+</html>

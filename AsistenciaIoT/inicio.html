@@ -8,15 +8,8 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
-        <a class="nav-item" href="Inicio.html">Inicio</a>
-        <a class="nav-item" href="Horario.html">Horario</a>
-        <!--<a class="nav-item" href="Asistencia.html">Asistencia</a>-->
-        <div class="nav-right">
-            <a href="login.html" class="btn-logout">Cerrar sesión</a>
-         </div>
-    </div>
+    <!-- NAVBAR DINÁMICO -->
+    <div class="navbar" id="navbar"></div>
 
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="contenedor">
@@ -81,6 +74,42 @@
         © 2025 Sistema de Gestión de Asistencia IoT — Todos los derechos reservados.
     </footer>
 
+    <!-- SCRIPT NAVBAR POR ROL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const rol = localStorage.getItem("rol");
+            const navbar = document.getElementById("navbar");
+
+            let html = `
+                <a class="nav-item" href="Inicio.html">Inicio</a>
+                <a class="nav-item" href="Horario.html">Horario</a>
+            `;
+
+            // Si es profesor → agregar Asistencia
+            if (rol === "profesor") {
+                html += `<a class="nav-item" href="Asistencia.html">Asistencia</a>`;
+            }
+
+            // Botón cerrar sesión
+            html += `
+                <div class="nav-right">
+                    <a href="login.html" class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</a>
+                </div>
+            `;
+
+            navbar.innerHTML = html;
+
+            // Mostrar nombre si lo tienes guardado
+            const nombre = localStorage.getItem("nombre") || "Usuario";
+            document.getElementById("nombreUsuario").textContent = nombre;
+        });
+
+        function cerrarSesion() {
+            localStorage.clear();
+        }
+    </script>
+
     <script src="scripts/inicio.js"></script>
+
 </body>
 </html>

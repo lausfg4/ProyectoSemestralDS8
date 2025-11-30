@@ -2,78 +2,149 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/Asistencia.css">
     <title>Asistencia</title>
+
+    <link rel="stylesheet" href="styles/Asistencia.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-<div class="navbar">
-                <a class="nav-item" href="Inicio.html">Inicio</a>
-                <a class="nav-item" href="Horario.html">Horario</a>
-                <a class="nav-item" href="Asistencia.html">Asistencia</a>
-                <a class="nav-item" href="Perfil.html">Perfil</a>
-            </div>
+    <!-- NAVBAR DINÁMICO -->
+    <div class="navbar" id="navbar"></div>
 
-    <!-- CONTENEDOR PRINCIPAL -->
+    <!-- CONTENIDO PRINCIPAL -->
     <div class="contenido">
 
         <!-- SIDEBAR -->
         <div class="sidebar">
             <h2>Grupos</h2>
 
-            <!-- Grupo del estudiante -->
-            <div class="grupo-item active" onclick="mostrarMaterias()">
+            <div class="grupo-item" onclick="mostrarMaterias('1GS132')">
                 1GS132
             </div>
-        </div>
 
-        <!-- PANEL DE INFORMACIÓN -->
-        <div class="panel" id="panelInfo">
-
-            <h2 class="titulo-panel">Selecciona una materia</h2>
-
-            <!-- Lista de materias -->
-            <div class="materias" id="listaMaterias">
-                <div class="materia-item" onclick="mostrarAsistencias('Desarrollo 8')">Desarrollo 8</div>
-                <div class="materia-item" onclick="mostrarAsistencias('Redes de Computadoras')">Redes de Computadoras</div>
-                <div class="materia-item" onclick="mostrarAsistencias('Sistemas Operativos')">Sistemas Operativos</div>
-                <div class="materia-item" onclick="mostrarAsistencias('Lógica')">Lógica</div>
+            <div class="grupo-item" onclick="mostrarMaterias('2GS241')">
+                2GS241
             </div>
 
-            <!-- Aquí aparecerán las asistencias -->
+        </div>
+
+        <!-- PANEL PRINCIPAL -->
+        <div class="panel" id="panelInfo">
+
+            <h2 class="titulo-panel">Selecciona un grupo</h2>
+
+            <!-- MATERIAS -->
+            <div class="materias" id="listaMaterias"></div>
+
+            <!-- LISTA DE ASISTENCIAS -->
             <div id="listaAsistencias" class="asistencias"></div>
 
         </div>
 
     </div>
 
+    <!-- FOOTER -->
+    <footer class="footer">
+        © 2025 Sistema de Gestión de Asistencia IoT — Todos los derechos reservados.
+    </footer>
+
+
 <script>
-function mostrarMaterias() {
+// =========================================
+// NAVBAR SEGÚN ROL + BLOQUEO DE ACCESO
+// =========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const rol = localStorage.getItem("rol");
+
+    // 🚫 Bloquear completamente si NO es profesor
+    if (rol !== "profesor") {
+        Swal.fire({
+            icon: "warning",
+            title: "Acceso denegado",
+            text: "Esta sección es solo para profesores.",
+            confirmButtonColor: "#532b80"
+        }).then(() => {
+            window.location.href = "Inicio.html";
+        });
+        return;
+    }
+
+    // Si es profesor → Navbar especial
+    const navbar = document.getElementById("navbar");
+
+    navbar.innerHTML = `
+        <a class="nav-item" href="InicioProfesor.html">Inicio</a>
+        <a class="nav-item active" href="Asistencia.html">Asistencia</a>
+        <a class="nav-item" href="Horario.html">Horario</a>
+        <a class="nav-item" href="Perfil.html">Perfil</a>
+
+        <div class="nav-right">
+            <a href="login.html" class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</a>
+        </div>
+    `;
+});
+
+// Cerrar sesión limpio
+function cerrarSesion() {
+    localStorage.clear();
+    window.location.href = "login.html";
+}
+
+
+
+// =========================================
+// MOSTRAR LAS MATERIAS DE UN GRUPO
+// =========================================
+function mostrarMaterias(grupo) {
     document.getElementById("listaAsistencias").innerHTML = "";
-    document.querySelector(".titulo-panel").innerText = "Selecciona una materia";
+    document.querySelector(".titulo-panel").innerText = "Materias del grupo " + grupo;
+
+    // Datos estáticos de prueba — luego se cambian por API
+    const materias = {
+        "1GS132": ["Desarrollo 8", "Redes de Computadoras", "Sistemas Operativos", "Lógica"],
+        "2GS241": ["Matemáticas", "Base de Datos", "Ética Profesional"]
+    };
+
+    document.getElementById("listaMaterias").innerHTML = materias[grupo]
+        .map(m => `<div class="materia-item" onclick="mostrarAsistencias('${m}')">${m}</div>`)
+        .join("");
+
     document.getElementById("listaMaterias").style.display = "block";
 }
 
+
+
+// =========================================
+// MOSTRAR LISTA DE ASISTENCIAS
+// =========================================
 function mostrarAsistencias(materia) {
     document.querySelector(".titulo-panel").innerText = materia;
 
+    // Datos estáticos de prueba
     let html = `
-        <div class="asistencia-item">Asistencia (11/28/2025) <button class="btn">PDF</button></div>
-        <div class="asistencia-item">Asistencia (11/25/2025) <button class="btn">PDF</button></div>
-        <div class="asistencia-item">Asistencia (11/20/2025) <button class="btn">PDF</button></div>
+        <div class="asistencia-item">
+            Asistencia (2025-11-28)
+            <button class="btn">PDF</button>
+        </div>
+        <div class="asistencia-item">
+            Asistencia (2025-11-25)
+            <button class="btn">PDF</button>
+        </div>
+        <div class="asistencia-item">
+            Asistencia (2025-11-20)
+            <button class="btn">PDF</button>
+        </div>
     `;
 
     document.getElementById("listaMaterias").style.display = "none";
     document.getElementById("listaAsistencias").innerHTML = html;
 }
+
 </script>
-
-<div class="footer">
-    © 2025 Sistema de Gestión de Asistencia IoT — Todos los derechos reservados.
-</div>
-
 
 </body>
 </html>
