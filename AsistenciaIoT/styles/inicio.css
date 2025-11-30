@@ -21,9 +21,12 @@ body{
    NAVBAR
 =========================== */
 .navbar {
+    position: relative; /* 🔥 NECESARIO para colocar el botón sin afectar el centrado */
+
     display: flex;
-    justify-content: center;
+    justify-content: center; /* EL MENÚ QUEDA EXACTAMENTE CENTRADO */
     align-items: center;
+
     background: rgba(255,255,255,0.9);
     padding: 18px;
     gap: 80px;
@@ -32,12 +35,38 @@ body{
     border-radius: 20px;
 }
 
+/* Items del menú */
 .nav-item {
     color: #000;
     font-size: 24px;
     font-weight: 600;
     text-decoration: none;
     position: relative;
+}
+
+/* ===========================
+   BOTÓN CERRAR SESIÓN A LA DERECHA
+=========================== */
+.nav-right {
+    position: absolute;
+    right: 30px;        /* 🔥 Lo coloca totalmente a la derecha */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.2s;
+}
+
+.btn-logout:hover {
+    background: #532b80;
+    color: black;
 }
 
 /* ===========================
