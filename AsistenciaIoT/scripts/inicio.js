@@ -1,75 +1,141 @@
+// ===============================
+// CONFIGURACIÓN
+// ===============================
+
+// Recuperar token almacenado en el login
 const token = localStorage.getItem("token");
-const nombre = localStorage.getItem("nombre");
-document.getElementById("nombreUsuario").textContent = nombre;
 
-// =========================
-//     CARGAR PRÓXIMAS CLASES
-// =========================
-async function cargarProximasClases() {
-    const res = await fetch("http://161.35.190.4:8000/api/horario_estudiante/", {
-        headers: { "Authorization": `Bearer ${token}` }
-    });
+if (!token) {
+    alert("No tienes sesión activa");
+    window.location.href = "login.html";
+}
 
-    const data = await res.json();
-    const contenedor = document.getElementById("proximasClases");
 
-    let hoy = new Date().getDay(); 
-    if (hoy === 0) hoy = 7;
+// ===============================
+// FUNCIONES PARA TRAER LA DATA
+// ===============================
+async function cargarAsistencias() {
+    try {
+        let respuesta = await fetch("http://161.35.190.4:8000/api/asistencia_estudiante/", {
+            method: "GET",
+            headers: {
+                "Authorization": "Token " + token,
+                "Content-Type": "application/json"
+            }
+        });
 
-    const clasesHoy = data.filter(x => x.dia === hoy);
+        if (!respuesta.ok) {
+            console.log("Error al cargar asistencias");
+            return;
+        }
 
-    document.getElementById("clasesHoy").textContent = clasesHoy.length;
+        let data = await respuesta.json();
+        console.log("Asistencias:", data);
 
-    if (clasesHoy.length === 0) {
-        contenedor.innerHTML = "<p>No tienes clases hoy.</p>";
-        return;
+        actualizarDashboard(data);
+        mostrarUltimasAsistencias(data);
+        mostrarProximasClases(data);
+
+    } catch (error) {
+        console.error("Error inesperado:", error);
     }
+}
 
-    clasesHoy.forEach(c => {
+
+// ===============================
+// ACTUALIZAR LOS CARDS PRINCIPALES
+// ===============================
+function actualizarDashboard(asistencias) {
+
+    // Total del día actual
+    let hoy = new Date().toLocaleDateString("es-PA", { weekday: "long" }).toLowerCase();
+
+    let asistenciasHoy = asistencias.filter(a => a.dia.toLowerCase() === hoy);
+
+    let presentesHoy = asistenciasHoy.filter(a => a.presente === true);
+
+    // Rellenar tarjetas
+    document.getElementById("asisHoy").textContent = `${presentesHoy.length}/${asistenciasHoy.length}`;
+    document.getElementById("clasesHoy").textContent = asistenciasHoy.length;
+
+    // Porcentaje general
+    let totalPresentes = asistencias.filter(a => a.presente === true).length;
+    let totalClases = asistencias.length;
+    let porcentaje = totalClases > 0 ? Math.round((totalPresentes / totalClases) * 100) : 0;
+
+    document.getElementById("porcentajeGeneral").textContent = `${porcentaje}%`;
+}
+
+
+// ===============================
+// mostrar últimas asistencias
+// ===============================
+function mostrarUltimasAsistencias(asistencias) {
+    let contenedor = document.getElementById("ultAsistencias");
+    contenedor.innerHTML = "";
+
+    asistencias.slice(0, 5).forEach(a => {
         contenedor.innerHTML += `
             <div class="item">
-                <span>${c.materia} — ${c.inicio} a ${c.fin}</span>
-                <span>Aula ${c.aula}</span>
+                <strong>${a.materia}</strong>
+                <span>${formatearFechaBonita(a.timestamp)}</span>
+                <p>${a.presente ? "✔ Presente" : "❌ Ausente"}</p>
             </div>
         `;
     });
 }
 
-// =========================
-//     ÚLTIMAS ASISTENCIAS
-// =========================
-async function cargarAsistencias() {
-    const res = await fetch("http://161.35.190.4:8000/api/asistencia_estudiante/", {
-        headers: { "Authorization": `Bearer ${token}` }
+
+// ===============================
+// Próximas clases de HOY
+// ===============================
+function mostrarProximasClases(asistencias) {
+    let contenedor = document.getElementById("proximasClases");
+    contenedor.innerHTML = "";
+
+    let hoy = new Date().toLocaleDateString("es-PA", { weekday: "long" }).toLowerCase();
+
+    let clasesHoy = asistencias.filter(a => a.dia.toLowerCase() === hoy);
+
+    clasesHoy.forEach(c => {
+        contenedor.innerHTML += `
+            <div class="item">
+                <strong>${c.materia}</strong>
+                <span>${c.inicio} - ${c.fin}</span>
+            </div>
+        `;
     });
 
-    const data = await res.json();
-    const cont = document.getElementById("ultAsistencias");
-
-    let presentes = 0;
-    data.forEach(a => {
-        if (a.presente) presentes++;
-    });
-
-    document.getElementById("porcentajeGeneral").textContent =
-        Math.round((presentes / data.length) * 100) + "%";
-
-    data.slice(0,5).forEach(a => {
-        cont.innerHTML += `
-        <div class="item">
-            <span>${a.materia} — ${a.dia}</span>
-            <span>${a.presente ? "✔ Presente" : "❌ Ausente"}</span>
-        </div>`;
-    });
-
-    // contar asistencias de hoy
-    let hoy = new Date().toISOString().split("T")[0];
-    let asistHoy = data.filter(a => a.timestamp.startsWith(hoy));
-    document.getElementById("asisHoy").textContent = asistHoy.length + "/" + data.length;
+    if (clasesHoy.length === 0) {
+        contenedor.innerHTML = "<p>No tienes clases hoy.</p>";
+    }
 }
 
-// =========================
-//     INICIALIZAR
-// =========================
-cargarProximasClases();
+function formatearFechaBonita(fechaOriginal) {
+    let fecha = new Date(fechaOriginal);
+
+    // Fecha en español
+    let opcionesFecha = {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    };
+
+    let opcionesHora = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    };
+
+    let fechaBonita = fecha.toLocaleDateString("es-ES", opcionesFecha);
+    let horaBonita = fecha.toLocaleTimeString("es-ES", opcionesHora);
+
+    return `${fechaBonita} — ${horaBonita}`;
+}
+
+
+
+// ===============================
+// EJECUTAR
+// ===============================
 cargarAsistencias();

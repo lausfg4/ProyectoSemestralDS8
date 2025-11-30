@@ -25,8 +25,9 @@ body {
       NAVBAR (CON TRANSPARENCIA)
 ============================ */
 .navbar {
+    position: relative; /* 🔥 Permite colocar el botón sin mover el centro */
     display: flex;
-    justify-content: center;
+    justify-content: center;  /* Centro REAL del menú */
     align-items: center;
 
     /* Glassmorphism */
@@ -43,6 +44,7 @@ body {
     border: 1px solid rgba(255,255,255,0.4);
 }
 
+/* Nav items centrados */
 .nav-item {
     color: #000;
     font-size: 24px;
@@ -74,6 +76,32 @@ body {
 .nav-item:hover {
     opacity: .7;
     transform: translateY(-2px);
+}
+
+/* ============================
+      BOTÓN CERRAR SESIÓN A LA DERECHA
+============================ */
+.nav-right {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-logout:hover {
+    background: #532b80;
+    color: white;
 }
 
 /* ============================
@@ -162,15 +190,14 @@ body {
 }
 
 .presente {
-    background: #7ee68d; /* Verde */
+    background: #7ee68d;
     color: black;
 }
 
 .ausente {
-    background: #ff6b6b; /* Rojo */
+    background: #ff6b6b;
     color: white;
 }
-
 
 /* ============================
       FOOTER TRANSPARENTE
