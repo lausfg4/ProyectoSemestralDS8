@@ -22,14 +22,8 @@
         <div class="sidebar">
             <h2>Grupos</h2>
 
-            <div class="grupo-item" onclick="mostrarMaterias('1GS132')">
-                1GS132
-            </div>
-
-            <div class="grupo-item" onclick="mostrarMaterias('2GS241')">
-                2GS241
-            </div>
-
+            <div class="grupo-item" onclick="cargarMaterias('1GS132')">1GS132</div>
+            <div class="grupo-item" onclick="cargarMaterias('2GS241')">2GS241</div>
         </div>
 
         <!-- PANEL PRINCIPAL -->
@@ -46,104 +40,40 @@
         </div>
 
     </div>
+    
+    <div id="editorAsistencia" class="editor-panel" style="display:none;">
+    <h3>Editar asistencia</h3>
+
+    <table id="tablaEdicion" class="tabla-edicion">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Cédula</th>
+                <th>Presente</th>
+                <th>Comentario</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div style="margin-top:20px;">
+        <button class="btn" onclick="cerrarEditor()">Cerrar</button>
+        <button class="btn" onclick="guardarTodo()">Guardar asistencia</button>
+        <button class="btn" onclick="generarPDFfinal()">Generar PDF</button>
+    </div>
+</div>
+
 
     <!-- FOOTER -->
     <footer class="footer">
         © 2025 Sistema de Gestión de Asistencia IoT — Todos los derechos reservados.
     </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
 
-
-<script>
-// =========================================
-// NAVBAR SEGÚN ROL + BLOQUEO DE ACCESO
-// =========================================
-document.addEventListener("DOMContentLoaded", () => {
-    const rol = localStorage.getItem("rol");
-
-    // 🚫 Bloquear completamente si NO es profesor
-    if (rol !== "profesor") {
-        Swal.fire({
-            icon: "warning",
-            title: "Acceso denegado",
-            text: "Esta sección es solo para profesores.",
-            confirmButtonColor: "#532b80"
-        }).then(() => {
-            window.location.href = "Inicio.html";
-        });
-        return;
-    }
-
-    // Si es profesor → Navbar especial
-    const navbar = document.getElementById("navbar");
-
-    navbar.innerHTML = `
-        <a class="nav-item" href="InicioProfesor.html">Inicio</a>
-        <a class="nav-item active" href="Asistencia.html">Asistencia</a>
-        <a class="nav-item" href="HorarioProfesor.html">Horario</a>
-
-        <div class="nav-right">
-            <a href="login.html" class="btn-logout" onclick="cerrarSesion()">Cerrar sesión</a>
-        </div>
-    `;
-});
-
-// Cerrar sesión limpio
-function cerrarSesion() {
-    localStorage.clear();
-    window.location.href = "login.html";
-}
-
-
-
-// =========================================
-// MOSTRAR LAS MATERIAS DE UN GRUPO
-// =========================================
-function mostrarMaterias(grupo) {
-    document.getElementById("listaAsistencias").innerHTML = "";
-    document.querySelector(".titulo-panel").innerText = "Materias del grupo " + grupo;
-
-    // Datos estáticos de prueba — luego se cambian por API
-    const materias = {
-        "1GS132": ["Desarrollo 8", "Redes de Computadoras", "Sistemas Operativos", "Lógica"],
-        "2GS241": ["Matemáticas", "Base de Datos", "Ética Profesional"]
-    };
-
-    document.getElementById("listaMaterias").innerHTML = materias[grupo]
-        .map(m => `<div class="materia-item" onclick="mostrarAsistencias('${m}')">${m}</div>`)
-        .join("");
-
-    document.getElementById("listaMaterias").style.display = "block";
-}
-
-
-
-// =========================================
-// MOSTRAR LISTA DE ASISTENCIAS
-// =========================================
-function mostrarAsistencias(materia) {
-    document.querySelector(".titulo-panel").innerText = materia;
-
-    // Datos estáticos de prueba
-    let html = `
-        <div class="asistencia-item">
-            Asistencia (2025-11-28)
-            <button class="btn">PDF</button>
-        </div>
-        <div class="asistencia-item">
-            Asistencia (2025-11-25)
-            <button class="btn">PDF</button>
-        </div>
-        <div class="asistencia-item">
-            Asistencia (2025-11-20)
-            <button class="btn">PDF</button>
-        </div>
-    `;
-
-    document.getElementById("listaMaterias").style.display = "none";
-    document.getElementById("listaAsistencias").innerHTML = html;
-}
-
-</script>
+    <!-- ARCHIVO JS -->
+    <script src="scripts/asistencia.js"></script>
 
 </body>
 </html>
