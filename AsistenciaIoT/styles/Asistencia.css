@@ -248,3 +248,32 @@ body {
     border-top: 1px solid rgba(255,255,255,0.15);
     margin-top: auto;
 }
+
+.editor-panel {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    width: 90%;
+    margin: 20px auto;
+}
+
+.tabla-edicion {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-edicion th, .tabla-edicion td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.tabla-edicion input[type="text"] {
+    width: 95%;
+}
+
+.tabla-edicion input[type="checkbox"] {
+    transform: scale(1.3);
+}
+
