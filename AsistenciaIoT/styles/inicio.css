@@ -17,32 +17,64 @@ body{
     color: white;
 }
 
-/* ===========================
-   NAVBAR
-=========================== */
+/* ============================
+      NAVBAR GLASSMORPHISM
+============================ */
 .navbar {
-    position: relative; /* 🔥 NECESARIO para colocar el botón sin afectar el centrado */
-
+    position: relative; /* 🔥 Permite colocar el botón sin mover el centro */
     display: flex;
-    justify-content: center; /* EL MENÚ QUEDA EXACTAMENTE CENTRADO */
+    justify-content: center;  /* Centro REAL del menú */
     align-items: center;
 
-    background: rgba(255,255,255,0.9);
-    padding: 18px;
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 15px 25px;
     gap: 80px;
     width: 90%;
-    margin: 25px auto;
+    height: 60px;
+    margin: 20px auto;
     border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
-/* Items del menú */
+/* Nav items centrados */
 .nav-item {
     color: #000;
     font-size: 24px;
     font-weight: 600;
-    text-decoration: none;
+    cursor: pointer;
     position: relative;
+    padding-bottom: 4px;
+    transition: .3s ease;
+    text-decoration: none;
 }
+
+.nav-item::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    background: #000;
+    transition: .3s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-item:hover {
+    opacity: .7;
+    transform: translateY(-2px);
+}
+
 
 /* ===========================
    BOTÓN CERRAR SESIÓN A LA DERECHA

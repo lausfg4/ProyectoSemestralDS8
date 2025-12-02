@@ -10,49 +10,90 @@ body {
     min-height: 100vh;
 }
 
-/* NAVBAR */
+/* ============================
+      NAVBAR GLASSMORPHISM
+============================ */
 .navbar {
+    position: relative; /* 🔥 Permite colocar el botón sin mover el centro */
     display: flex;
+    justify-content: center;  /* Centro REAL del menú */
     align-items: center;
-    gap: 50px;
 
-    width: 90%;
-    margin: 20px auto 0 auto;
-    padding: 15px 25px;
-
-    background: rgba(255,255,255,0.85);
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+   
+    gap: 80px;
+    width: 90%;
+    height: 58px;
+    margin: 20px auto;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 20px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
+/* Nav items centrados */
 .nav-item {
-    font-size: 22px;
-    font-weight: bold;
-    text-decoration: none;
-    color: black;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
     position: relative;
+    padding-bottom: 4px;
+    transition: .3s ease;
+    text-decoration: none;
 }
 
-.nav-item.active::after {
+.nav-item::after {
     content: "";
-    width: 100%;
-    height: 3px;
-    background: black;
     position: absolute;
-    bottom: -3px;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    background: #000;
+    transition: .3s ease;
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+    width: 100%;
     left: 0;
 }
 
-.btn-logout {
-    margin-left: auto;
-    background: #ff4d4d;
-    color: white;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
+.nav-item:hover {
+    opacity: .7;
+    transform: translateY(-2px);
 }
+
+/* ============================
+      BOTÓN CERRAR SESIÓN A LA DERECHA
+============================ */
+.nav-right {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background: #ffffff;
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-logout:hover {
+    background: #532b80;
+    color: white;
+}
+
 
 /* Contenedor */
 .contenedor {
